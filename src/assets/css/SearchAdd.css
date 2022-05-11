@@ -1,0 +1,9 @@
+.SearchAdd .ant-btn-primary{
+    border-color: #3C3634 ;
+    background: #3C3634 ;
+}
+
+.SearchAdd .ant-btn-primary:hover, .SearchAdd .ant-btn-primary:focus{
+    border-color: #3C3634 ;
+    background: #3C3634 ;
+}

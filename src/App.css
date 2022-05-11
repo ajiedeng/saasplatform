@@ -1,0 +1,44 @@
+
+
+/* SideMenu */
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+  background-color: #F5F5F5;
+  font-weight: bold;
+}
+
+.ant-menu-vertical .ant-menu-item::after, .ant-menu-vertical-left .ant-menu-item::after, .ant-menu-vertical-right .ant-menu-item::after, .ant-menu-inline .ant-menu-item::after{
+  border-right: 3px solid #3C3634;
+}
+.ant-menu-light .ant-menu-item:hover, .ant-menu-light .ant-menu-item-active, .ant-menu-light .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open, .ant-menu-light .ant-menu-submenu-active, .ant-menu-light .ant-menu-submenu-title:hover{
+  color: #3C3634;
+}
+
+.ant-layout.ant-layout-has-sider{
+  padding-top: 64px;
+  position: relative;
+}
+.ant-layout.ant-layout-has-sider > .ant-layout{
+  width: auto;
+}
+
+/* .ant-modal */
+.ant-modal-title{
+  font-size: 20px;
+  font-weight: 500;
+}
+.account .ant-btn-primary.ant-input-search-button{
+  background: #fff;
+  border-color:#d9d9d9;
+  color: #1890FF;
+  border-left-color: transparent;
+}
+
+.mask{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left: 0;
+  background-color: transparent;
+  z-index: 1010;
+}

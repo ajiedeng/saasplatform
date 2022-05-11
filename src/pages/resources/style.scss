@@ -1,0 +1,44 @@
+.table-list {
+  padding-top: 20px;
+}
+
+// add-resource
+.add-resource {
+  background: #fff;
+  h3 {
+    font-size: 20px;
+    padding: 34px 0 30px 30px;
+  }
+}
+.form-add-resource {
+  width: 600px;
+  padding-bottom: 50px;
+}
+.custom-warning {
+  cursor: pointer;
+  .ant-message-notice-content {
+    width: 400px;
+    box-sizing: border-box;
+    background: #fffbe6;
+  }
+  .my-icon {
+    display: flex;
+    justify-content: space-between;
+  }
+  .ant-message .anticon {
+    top: 3px;
+  }
+  .ant-message-warning {
+    display: flex;
+    justify-content: start;
+    span:nth-child(2) {
+      display: inline-block;
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+}
+.ant-form-item-has-error :not(.ant-input-disabled):not(.ant-input-borderless) .ant-upload .ant-btn{
+  background-color: #fff;
+  border-color: #ff4d4f;
+}

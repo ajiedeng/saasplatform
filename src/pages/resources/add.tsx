@@ -1,0 +1,227 @@
+
+import React, { useState, useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Form, Input, message, Button, Upload, Space } from 'antd';
+import { UploadOutlined, CloseOutlined } from '@ant-design/icons';
+import { rqUpload, rqQuery } from "../../root/globalSlice";
+import './style.scss'
+import { useHistory, useLocation } from "react-router-dom";
+const layout = {
+    labelCol: { span: 4 },
+    wrapperCol: { span: 14 },
+};
+
+
+export default function Add() {
+    const dispatch = useDispatch();
+    const [form] = Form.useForm();
+    const [fileList, setFileList] = useState([{}]);// 上传成功文件列表
+    const [mask,setMask]=useState(false)
+
+    const normFile = (e: any) => { //如果是typescript, 那么参数写成 e: any 
+        if (Array.isArray(e)) { return e; }
+        return e && e.fileList;
+    };
+
+    const onClose = () => {
+        message.destroy('addRe');
+        setMask(false)
+    }
+    const onFinishFailed = async (values: any, errorFields: any, outOfDate: any) => {
+        setMask(true)
+        console.log('onFinishFailed', values, errorFields, outOfDate);
+        message.warning({
+            content: <div className="my-icon"><span>内容未填写，请补充后提交</span><div onClick={onClose}><CloseOutlined style={{ color: '#D9D9D9' }} /></div></div>,
+            className: 'custom-warning',
+            duration: 0,
+            style: {
+                marginTop: '20vh',
+            },
+            key: 'addRe'
+        });
+    }
+
+    const { querylist } = useSelector((state: any) => state.global);
+
+    const list = querylist.length !== 0 && querylist.data
+    const getId = list && list.id;
+    // const list=useMemo(()=>querylist.length !== 0 && querylist.data,[dispatch])
+    const location = useLocation();
+    const pathname = location.pathname.split('/').filter(i => i)[2];
+    const _pid = pathname && pathname.split('_')[0];
+    let _type: any = pathname && parseInt(pathname.split('_')[1]);
+    console.log(pathname, _pid, _type, '.......list......', list);
+    // const memberid = location.pathname.split('/').filter(i => i)[2];
+    useEffect(() => {
+        console.warn('.........useEffect...........');
+        dispatch(rqQuery({
+            url: '/productsource/query',
+            pid: _pid,
+            type: _type
+        }))
+        form.setFieldsValue(querylist.data)
+    }, [dispatch, getId]);
+    const props: any = {
+        beforeUpload: (file: any) => {
+            let fileType = file.name.split('.');
+            const fileDate = fileType.slice(-1);
+            if (['zip'].indexOf(fileDate[0]) < 0) {
+                message.error('仅支持文件格式：.zip格式附件!');
+                return Upload.LIST_IGNORE;
+            }
+            setFileList([file]);
+            return false;
+        },
+        maxCount: 1,
+        accept: '.zip',
+        // defaultFileList: pathname && [
+        //     {
+        //         // uid: '1',
+        //         name: pathname ? `${_pid}_${_type}.zip` : '',
+        //         status: 'done',
+        //         response: 'Server Error 500', // custom error message to show
+        //         // url: 'http://www.baidu.com/xxx.png',
+        //     }],
+        fileList,
+    };
+    const history = useHistory();
+    const onFinish = (values: any) => {
+        console.log(fileList, '.........onFishish', values);
+        const formData = new FormData();
+        fileList.forEach((file: any) => {
+            formData.append("file", file);
+        });
+        if (pathname) {
+            dispatch(rqUpload({ //修改
+                url: '/productsource/upload',
+                type: parseInt(values.type),
+                pid: values.pid,
+                name: values.name,
+                describe: values.describe,
+                file: formData,
+                id: list.id
+            }))
+        } else {
+            dispatch(rqUpload({ //添加
+                url: '/productsource/upload',
+                type: parseInt(values.type),
+                pid: values.pid,
+                name: values.name,
+                describe: values.describe,
+                file: formData
+            }))
+        }
+
+        history.goBack();
+    };
+    return (
+
+        <div className="add-resource">
+
+            <h3>
+                {!Boolean(pathname) && ' 新增资源包'}
+            </h3>
+
+
+            <div className="form-add-resource">
+                <Form {...layout} name="nest-messages" onFinish={onFinish}
+                    form={form}
+                    onFinishFailed={onFinishFailed as any}
+                    layout="horizontal"
+                >
+                    <Form.Item label="产品类型：">
+                        <Space>
+                            <Form.Item
+                                initialValue={pathname && list.type}
+                                name={'type'}
+                                noStyle
+                                rules={[
+                                    { required: true, message: '' },
+                                    { pattern: /^[0-9]*$/, message: '产品类型必须是数字组成' }
+                                ]}
+                            >
+                                <Input style={{ width: 280 }} disabled={Boolean(pathname)} />
+                            </Form.Item>
+                        </Space>
+                    </Form.Item>
+                    <Form.Item label="产品pid：">
+                        <Space>
+                            <Form.Item
+                                initialValue={pathname && list.pid}
+                                name={'pid'}
+                                noStyle
+                                rules={[{ required: true, message: '' }]}
+                            >
+                                <Input style={{ width: 280 }} disabled={Boolean(pathname)} />
+                            </Form.Item>
+                        </Space>
+                    </Form.Item>
+                    <Form.Item label="产品名称：">
+                        <Space>
+                            <Form.Item
+                                initialValue={pathname && list.name}
+                                name={'name'}
+                                noStyle
+                                rules={[{ required: true, message: '' }]}
+                            >
+                                <Input style={{ width: 280 }} />
+                            </Form.Item>
+                        </Space>
+                    </Form.Item>
+                    {/* <Form.Item label="版本号：">
+                            <Space>
+                                <Form.Item
+                                    name="version"
+                                    noStyle
+                                    rules={[{ required: true, message: '' }]}
+                                >
+                                    <Input style={{ width: 280 }} />
+                                </Form.Item>
+                            </Space>
+                        </Form.Item> */}
+                    <Form.Item label="版本描述：">
+                        <Space>
+                            <Form.Item
+                                initialValue={pathname && list.describe}
+                                name={'describe'}
+                                noStyle
+                                rules={[{ required: true, message: '' }]}
+                            >
+                                <Input.TextArea style={{ width: 280 }} />
+                            </Form.Item>
+                        </Space>
+                    </Form.Item>
+
+                    <Form.Item label="资源包：">
+                        <Space>
+                            <Form.Item
+                                name="upload"
+                                noStyle
+                                rules={[{ required: true, message: '' }]}
+                                valuePropName="fileList"
+                                getValueFromEvent={normFile}
+                            >
+                                <Upload {...props}>
+                                    <Button icon={<UploadOutlined />}>上传文件</Button>
+                                </Upload>
+                            </Form.Item>
+                        </Space>
+                    </Form.Item>
+                    <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 4 }}>
+                        <Space style={{ display: 'flex', marginBottom: 8 }} align="start">
+                            <Button type="primary" htmlType="submit">
+                                {pathname ? '保 存' : '提 交'}
+                            </Button>
+                            {/* {
+                                Boolean(pathname) && <Button type="primary" danger> 删 除</Button>
+                            } */}
+
+                        </Space>
+
+                    </Form.Item>
+                </Form>
+            </div>
+            {mask&&<div className="mask"></div>}
+        </div>
+    )
+}

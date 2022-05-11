@@ -1,0 +1,29 @@
+@import "./common.scss";
+.SearchAdd {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    height: 80px;
+    padding: 0 12px 0 26px;
+    .ant-btn-primary:hover,
+    .ant-btn-primary:focus {
+        background-color: $theme-color;
+        border-color: $theme-color;
+    }
+    .ant-btn-primary {
+        border-color: $theme-color;
+        background-color: $theme-color;
+    }
+    .right-btn {
+        button:first-child {
+            right: 10px;
+        }
+        .ant-btn:hover,
+        .ant-btn:focus {
+            background-color: none;
+            border-color: none;
+        }
+    }
+}
+

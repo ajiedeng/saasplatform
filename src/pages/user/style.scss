@@ -1,0 +1,109 @@
+.ant-input-suffix{
+    cursor: pointer;
+    color: #40a9ff;
+}
+
+.ant-layout-content {
+   background: #fff;
+   min-width: 992px;
+  }
+.add-user{
+    h3{
+        font-size: 20px;
+        color: rgba(0, 0, 0, 0.85);
+        padding: 30px 0;
+        font-weight: 500;
+    }
+}
+.custom-modal{
+    .ant-modal-footer{
+        border-top:none;
+        padding-bottom: 21px;
+    }
+}
+.ant-modal-footer{
+    display: flex;
+    justify-content: center;
+    
+    button{
+        width: 64px;
+        box-sizing: content-box;
+      
+    }
+}
+
+.form-add-user{
+    .ant-input-group-addon{
+        .ant-btn-primary{
+            background: transparent;
+            color: #1890FF ;
+            border-color: #d9d9d9;
+            border-left-color: transparent;
+        }
+        .ant-btn-primary:hover, .ant-btn-primary:focus{
+            background: transparent;
+            border-color: #d9d9d9;
+            color: #1890FF ;
+            border-left-color: transparent;
+        }
+        .ant-input-affix-wrapper:hover{
+            border-color: #d9d9d9;
+        }
+        .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover,.ant-input-search .ant-input:hover, .ant-input-search .ant-input:focus{
+            border-color: #d9d9d9;
+        }
+    }
+
+}
+
+
+.account-set{
+    .ant-btn-primary{
+        background: transparent;
+        color: #1890FF ;
+        border-color: #d9d9d9;
+        border-left-color: transparent;
+    }
+    .ant-btn-primary:hover, .ant-btn-primary:focus{
+        background: transparent;
+        border-color: #d9d9d9;
+        color: #1890FF ;
+        border-left-color: transparent;
+    }
+    input:-internal-autofill-selected{
+        background-color: #fff!important;
+    }
+    .ant-input-search .ant-input:hover,.ant-input-search .ant-input:focus{
+        border-color: #d9d9d9;
+        box-shadow: none;
+    }
+}
+
+.delModal{
+    .ant-modal-confirm .ant-modal-confirm-btns{
+        float: none;
+        text-align: center;
+    }
+}
+
+.ant-input-group-addon:first-child{
+    position: absolute;
+    z-index: 99;
+    left: 0;
+    background: transparent;
+    width: 234px;
+    height: 100%;
+    color:transparent;
+    -moz-user-select:none; /*火狐*/
+    -webkit-user-select:none; /*webkit浏览器*/
+    -ms-user-select:none; /*IE10*/
+    -khtml-user-select:none; /*早期浏览器*/
+    user-select:none;
+}
+.form-add-user .ant-input-group .ant-input,.form-add-user .ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button{
+    background: #efefef;
+}
+
+.form-add-user .ant-input-group .ant-input-affix-wrapper:not(:first-child),.form-add-user .ant-input-search .ant-input-group .ant-input-affix-wrapper:not(:first-child){
+    background-color: #efefef;
+}

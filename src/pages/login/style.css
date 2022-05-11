@@ -1,0 +1,68 @@
+.loginPage {
+	width: 100%;
+	height: 100%;
+	background: url("./images/BG2x.png") no-repeat;
+	background-size: cover;
+	position: relative;
+}
+.title {
+	text-align: center;
+	font-size: 26px;
+	color: rgba(0, 0, 0, 0.85);
+	margin-bottom: 60px;
+}
+.title img {
+	width: 80px;
+	height: 44px;
+	vertical-align: text-bottom;
+}
+.content {
+	width: 400px;
+	height: auto;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	padding: 0 20px;
+}
+.errtips {
+	color: #f5222d;
+	font-size: 14px;
+	position: absolute;
+	bottom: 79px;
+	left: 47px;
+}
+
+.loginPage .ant-form {
+	position: relative;
+}
+.loginPage .ant-input-affix-wrapper {
+	height: 52px;
+	border-radius: 26px;
+}
+.loginPage .ant-form-item {
+	text-align: center;
+}
+.loginPage .ant-btn-primary {
+	width: 200px;
+	height: 52px;
+	background: #3c3634;
+	border-radius: 30px;
+	border-color: #3c3634;
+}
+.loginPage .ant-btn:hover,
+.loginPage .ant-btn:focus {
+	border-color: #3c3634;
+	background: #3c3634;
+}
+.loginPage .ant-form .ant-form-item:nth-child(2) {
+	margin-bottom: 60px;
+}
+.loginPage .ant-input:hover {
+	border-color: none;
+}
+.loginPage .ant-form-item-explain-error {
+	text-align: left;
+	position: relative;
+	left: 47px;
+}

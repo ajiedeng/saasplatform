@@ -1,0 +1,16 @@
+.ant-breadcrumb span:nth-child(2){
+    .ant-breadcrumb-separator{
+        display: none;
+    }
+   
+}
+.ant-breadcrumb > span:last-child a{
+    // color: rgba(0, 0, 0,1)!important;
+}
+.ant-table-thead > tr > th{
+    font-weight: bolder!important;
+}
+.ant-breadcrumb a{
+    font-weight: bold;
+    color: rgba(0, 0, 0, 1)!important;
+}

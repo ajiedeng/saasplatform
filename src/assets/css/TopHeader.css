@@ -1,0 +1,52 @@
+.header .logo{
+  display: inline-block;
+  font-size: 18px;
+  color: #fff;
+  font-weight: 500;
+}
+.header img{
+    vertical-align: middle;
+}
+.header em{
+    font-weight: bold;
+    padding: 0 5px;
+}
+.ant-layout-header{
+  
+    color: white;
+}
+.ant-layout-header.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #3C3634;
+    position: fixed;
+    width: 100%;
+    z-index: 9;
+}
+
+.header .header-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 320px;
+}
+
+.header-right .ant-btn{
+    background: transparent;
+    border-color:transparent;
+}
+.header-right .ant-btn:active,.header-right .ant-btn:focus{
+    background: transparent;
+    border-color: transparent;
+}
+.ant-dropdown-trigger span{
+    color: #fff;
+}
+.ant-dropdown-trigger span.ant-avatar{
+    margin-right: 8px;
+}
+.dropdown-wrap .ant-btn:hover{
+    background: transparent;
+    border-color: transparent;
+}
